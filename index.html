@@ -1,0 +1,41 @@
+<!doctype html>
+<!--[if lte IE 8]> <html class="ie"> <![endif]-->
+<!--[if gt IE 8]><!--> <html> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Shiny Notes</title>
+    <meta name="description" content="In-browser markdown editor for notes and comments. Saves to localStorage, your notes are yours alone.">
+    <meta name="viewport" content="width=device-width">
+    <style>
+        div {
+            font-size: 21px;
+            line-height: 1.6;
+            font-family: Consolas, Alegreya, monospace;
+            max-width: 35em;
+            margin: 0 auto;
+            padding: 3rem;
+            background-color: rgb(233,233,225);
+            color: rgb(68,68,68);
+        }
+    </style>
+</head>
+<body>
+
+    <div contenteditable spellcheck="false"></div>
+
+    <script>
+        var div = document.querySelector('div');
+
+        // Load note from localStorage
+        window.addEventListener('load', function() {
+            div.innerHTML = localStorage['shiny-notes.content'];
+        });
+
+        // Save to localStorage
+        div.addEventListener('input', function() {
+            localStorage['shiny-notes.content'] = div.innerHTML;
+        });
+    </script>
+</body>
+</html>
