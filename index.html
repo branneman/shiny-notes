@@ -8,6 +8,9 @@
     <meta name="description" content="In-browser markdown editor for notes and comments. Saves to localStorage, your notes are yours alone.">
     <meta name="viewport" content="width=device-width">
     <style>
+        body {
+            background: #eee;
+        }
         div {
             font-size: 21px;
             line-height: 1.6;
@@ -15,8 +18,10 @@
             max-width: 35em;
             margin: 0 auto;
             padding: 3rem;
-            background-color: rgb(233,233,225);
-            color: rgb(68,68,68);
+            color: #444;
+        }
+        div:focus {
+            outline: none;
         }
     </style>
 </head>
@@ -29,13 +34,15 @@
 
         // Load note from localStorage
         window.addEventListener('load', function() {
-            div.innerHTML = localStorage['shiny-notes.content'];
+            div.innerHTML = localStorage['shiny-notes.content'] || 'Welcome! Start typing and it will be saved immediately.';
         });
 
         // Save to localStorage
         div.addEventListener('input', function() {
             localStorage['shiny-notes.content'] = div.innerHTML;
         });
+
+        div.focus();
     </script>
 </body>
 </html>
